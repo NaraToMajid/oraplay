@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ORAPLAY</title>
+    <title>ORAPLAY - Platform Musik Pixel Style</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
@@ -25,35 +25,11 @@
 
     <!-- Landing Page -->
     <section id="landing-page">
-        <div class="landing-content">
-            <div class="logo-container">
-                <h1 class="logo">ORAPLAY</h1>
-                <p class="tagline pixel-border">
-                    SELAMAT DATANG DI ORAPLAY, PLATFORM MUSIK BUATAN ORADEV!
-                </p>
-            </div>
-            <div class="landing-buttons">
-                <button class="pixel-btn pixel-shadow primary" id="login-btn">MASUK</button>
-            </div>
-            
-            <div class="landing-features">
-                <div class="feature pixel-border">
-                    <i class="fas fa-music"></i>
-                    <h3>Koleksi Lengkap</h3>
-                    <p>Ribuan lagu dari berbagai genre dan artis</p>
-                </div>
-                <div class="feature pixel-border">
-                    <i class="fas fa-headphones"></i>
-                    <h3>Streaming HD</h3>
-                    <p>Dengarkan musik dengan kualitas terbaik</p>
-                </div>
-                <div class="feature pixel-border">
-                    <i class="fas fa-mobile-alt"></i>
-                    <h3>Akses Mobile</h3>
-                    <p>Dengarkan di mana saja, kapan saja</p>
-                </div>
-            </div>
-        </div>
+        <h1 class="logo">ORAPLAY</h1>
+        <p class="tagline pixel-border" style="padding: 20px;">
+            SELAMAT DATANG DI ORAPLAY, PLATFORM MUSIK DENGAN PENGALAMAN YANG BERBEDA
+        </p>
+        <button class="pixel-btn pixel-shadow" id="login-btn">MASUK</button>
     </section>
 
     <!-- Auth Modal -->
@@ -95,65 +71,20 @@
         </div>
     </div>
 
-    <!-- Mobile Menu Overlay -->
-    <div class="mobile-menu-overlay" id="mobile-menu-overlay"></div>
-
-    <!-- Mobile Menu -->
-    <div class="mobile-menu" id="mobile-menu">
-        <div class="mobile-nav">
-            <div class="mobile-nav-item active" data-section="home">
-                <i class="fas fa-home"></i>
-                BERANDA
-            </div>
-            <div class="mobile-nav-item" data-section="albums">
-                <i class="fas fa-compact-disc"></i>
-                ALBUM
-            </div>
-            <div class="mobile-nav-item" data-section="songs">
-                <i class="fas fa-music"></i>
-                LAGU
-            </div>
-            <div class="mobile-nav-item" data-section="artists">
-                <i class="fas fa-user"></i>
-                ARTIS
-            </div>
-            <div class="mobile-nav-item" data-section="genres">
-                <i class="fas fa-tag"></i>
-                GENRE
-            </div>
-        </div>
-        <div style="margin-top: auto; padding: 20px;">
-            <button class="pixel-btn pixel-shadow" id="mobile-logout-btn" style="width: 100%;">
-                <i class="fas fa-sign-out-alt"></i> KELUAR
-            </button>
-        </div>
-    </div>
-
     <!-- Main App -->
     <section id="main-app">
         <header class="app-header">
-            <h2 class="logo">ORAPLAY</h2>
-            
-            <!-- Tombol Hamburger untuk Mobile -->
-            <button class="hamburger-btn" id="hamburger-btn">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            
+            <h2 class="logo" style="font-size: 2rem;">ORAPLAY</h2>
             <div class="user-info">
                 <div class="user-avatar">
                     <i class="fas fa-user"></i>
                 </div>
                 <span id="current-user"></span>
-                <button class="pixel-btn" id="back-btn" style="display: none;">
-                    <i class="fas fa-arrow-left"></i>
-                </button>
+                <button class="pixel-btn" id="back-btn" style="display: none;"><i class="fas fa-arrow-left"></i></button>
                 <button class="pixel-btn" id="logout-btn">KELUAR</button>
             </div>
         </header>
         
-        <!-- Navigation Desktop -->
         <nav class="main-nav">
             <div class="nav-item active" data-section="home">BERANDA</div>
             <div class="nav-item" data-section="albums">ALBUM</div>
@@ -189,28 +120,17 @@
     <!-- Admin Dashboard -->
     <section id="admin-dashboard">
         <header class="admin-header">
-            <h2 class="logo">ORAPLAY ADMIN</h2>
-            
-            <!-- Tombol Hamburger untuk Admin Mobile -->
-            <button class="hamburger-btn" id="admin-hamburger-btn">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            
+            <h2 class="logo" style="font-size: 2rem;">ORAPLAY ADMIN</h2>
             <div class="user-info">
                 <div class="user-avatar">
                     <i class="fas fa-user-cog"></i>
                 </div>
                 <span>Administrator</span>
-                <button class="pixel-btn" id="admin-back-btn" style="display: none;">
-                    <i class="fas fa-arrow-left"></i>
-                </button>
+                <button class="pixel-btn" id="admin-back-btn" style="display: none;"><i class="fas fa-arrow-left"></i></button>
                 <button class="pixel-btn" id="admin-logout-btn">KELUAR</button>
             </div>
         </header>
         
-        <!-- Navigation Admin Desktop -->
         <nav class="admin-nav">
             <div class="nav-item active" data-admin-section="manage-artists">KELOLA ARTIS</div>
             <div class="nav-item" data-admin-section="manage-albums">KELOLA ALBUM</div>
@@ -245,7 +165,7 @@
                         <input type="hidden" id="artist-genre" required>
                     </div>
                     <div class="upload-area" id="artist-image-upload">
-                        <i class="fas fa-cloud-upload-alt"></i>
+                        <i class="fas fa-cloud-upload-alt" style="font-size: 2rem; margin-bottom: 15px;"></i>
                         <p>KLIK UNTUK UPLOAD FOTO ARTIS</p>
                         <p style="font-size: 0.8rem; color: var(--accent-color);">Format: JPG, PNG (Maks: 5MB)</p>
                         <input type="file" id="artist-image" accept="image/*" style="display: none;">
@@ -290,7 +210,7 @@
                         </div>
                     </div>
                     <div class="upload-area" id="album-cover-upload">
-                        <i class="fas fa-cloud-upload-alt"></i>
+                        <i class="fas fa-cloud-upload-alt" style="font-size: 2rem; margin-bottom: 15px;"></i>
                         <p>KLIK UNTUK UPLOAD COVER ALBUM</p>
                         <p style="font-size: 0.8rem; color: var(--accent-color);">Format: JPG, PNG (Maks: 5MB)</p>
                         <input type="file" id="album-cover" accept="image/*" style="display: none;">
@@ -337,14 +257,14 @@
                         </select>
                     </div>
                     <div class="upload-area" id="song-cover-upload">
-                        <i class="fas fa-cloud-upload-alt"></i>
+                        <i class="fas fa-cloud-upload-alt" style="font-size: 2rem; margin-bottom: 15px;"></i>
                         <p>KLIK UNTUK UPLOAD COVER LAGU (OPSIONAL)</p>
                         <p style="font-size: 0.8rem; color: var(--accent-color);">Format: JPG, PNG (Maks: 5MB)</p>
                         <input type="file" id="song-cover" accept="image/*" style="display: none;">
                         <div class="upload-preview" id="song-cover-preview"></div>
                     </div>
                     <div class="multi-upload-area" id="song-files-upload">
-                        <i class="fas fa-cloud-upload-alt"></i>
+                        <i class="fas fa-cloud-upload-alt" style="font-size: 2rem; margin-bottom: 15px;"></i>
                         <p>KLIK ATAU SERET UNTUK UPLOAD FILE LAGU (MULTIPLE)</p>
                         <p style="font-size: 0.8rem; color: var(--accent-color);">Format: MP3 (Maks: 10MB per file)</p>
                         <input type="file" id="song-files" accept="audio/mpeg,audio/mp3" multiple style="display: none;">
@@ -386,33 +306,6 @@
                         <p>Belum ada genre. Tambahkan genre pertama!</p>
                     </div>
                 </div>
-            </div>
-        </div>
-        
-        <!-- Mobile Menu untuk Admin -->
-        <div class="mobile-menu" id="admin-mobile-menu">
-            <div class="mobile-nav">
-                <div class="mobile-nav-item active" data-admin-section="manage-artists">
-                    <i class="fas fa-user"></i>
-                    KELOLA ARTIS
-                </div>
-                <div class="mobile-nav-item" data-admin-section="manage-albums">
-                    <i class="fas fa-compact-disc"></i>
-                    KELOLA ALBUM
-                </div>
-                <div class="mobile-nav-item" data-admin-section="manage-songs">
-                    <i class="fas fa-music"></i>
-                    KELOLA LAGU
-                </div>
-                <div class="mobile-nav-item" data-admin-section="manage-genres">
-                    <i class="fas fa-tag"></i>
-                    KELOLA GENRE
-                </div>
-            </div>
-            <div style="margin-top: auto; padding: 20px;">
-                <button class="pixel-btn pixel-shadow" id="admin-mobile-logout-btn" style="width: 100%;">
-                    <i class="fas fa-sign-out-alt"></i> KELUAR
-                </button>
             </div>
         </div>
     </section>
