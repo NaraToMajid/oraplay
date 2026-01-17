@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORAPLAY</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Loading Overlay -->
+    <div class="loading" id="loading">
+        <i class="fas fa-spinner"></i>
+        <p>Memuat...</p>
+    </div>
+
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" id="theme-toggle">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- Notification -->
+    <div class="notification pixel-border" id="notification"></div>
+
+    <!-- Landing Page -->
+    <section id="landing-page">
+        <h1 class="logo">ORAPLAY</h1>
+        <p class="tagline pixel-border" style="padding: 20px;">
+            SELAMAT DATANG DI ORAPLAY, PLATFORM MUSIK BUATAN ORADEV!
+        </p>
+        <button class="pixel-btn pixel-shadow" id="login-btn">MASUK</button>
+    </section>
+
+    <!-- Auth Modal -->
+    <div class="auth-modal" id="auth-modal">
+        <div class="auth-container pixel-shadow">
+            <button class="close-btn" id="close-auth">&times;</button>
+            <div class="auth-tabs">
+                <div class="auth-tab active" data-form="login-form">MASUK</div>
+                <div class="auth-tab" data-form="register-form">DAFTAR</div>
+            </div>
+            
+            <form class="auth-form active" id="login-form">
+                <div class="form-group">
+                    <label for="login-username">USERNAME</label>
+                    <input type="text" id="login-username" class="pixel-input" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">PASSWORD</label>
+                    <input type="password" id="login-password" class="pixel-input" required>
+                </div>
+                <button type="submit" class="pixel-btn pixel-shadow" style="width: 100%;">MASUK</button>
+            </form>
+            
+            <form class="auth-form" id="register-form">
+                <div class="form-group">
+                    <label for="register-username">USERNAME</label>
+                    <input type="text" id="register-username" class="pixel-input" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-password">PASSWORD</label>
+                    <input type="password" id="register-password" class="pixel-input" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-confirm">KONFIRMASI PASSWORD</label>
+                    <input type="password" id="register-confirm" class="pixel-input" required>
+                </div>
+                <button type="submit" class="pixel-btn pixel-shadow" style="width: 100%;">DAFTAR</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main App -->
+    <section id="main-app">
+        <header class="app-header">
+            <h2 class="logo" style="font-size: 2rem;">ORAPLAY</h2>
+            <div class="user-info">
+                <div class="user-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <span id="current-user"></span>
+                <button class="pixel-btn" id="back-btn" style="display: none;"><i class="fas fa-arrow-left"></i></button>
+                <button class="pixel-btn" id="logout-btn">KELUAR</button>
+            </div>
+        </header>
+        
+        <nav class="main-nav">
+            <div class="nav-item active" data-section="home">BERANDA</div>
+            <div class="nav-item" data-section="albums">ALBUM</div>
+            <div class="nav-item" data-section="songs">LAGU</div>
+            <div class="nav-item" data-section="artists">ARTIS</div>
+            <div class="nav-item" data-section="genres">GENRE</div>
+        </nav>
+        
+        <div class="main-content" id="main-content">
+            <!-- Content will be loaded dynamically -->
+        </div>
+        
+        <div class="music-player" id="music-player">
+            <div class="player-controls">
+                <button class="player-btn" id="prev-btn"><i class="fas fa-step-backward"></i></button>
+                <button class="player-btn" id="play-btn"><i class="fas fa-play"></i></button>
+                <button class="player-btn" id="next-btn"><i class="fas fa-step-forward"></i></button>
+            </div>
+            <div class="player-info">
+                <div class="player-title" id="player-title">Tidak ada lagu yang diputar</div>
+                <div class="player-artist" id="player-artist">-</div>
+                <div class="progress-container" id="progress-container">
+                    <div class="progress-bar" id="progress-bar"></div>
+                </div>
+                <div class="time-display">
+                    <span id="current-time">0:00</span>
+                    <span id="total-time">0:00</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admin Dashboard -->
+    <section id="admin-dashboard">
+        <header class="admin-header">
+            <h2 class="logo" style="font-size: 2rem;">ORAPLAY ADMIN</h2>
+            <div class="user-info">
+                <div class="user-avatar">
+                    <i class="fas fa-user-cog"></i>
+                </div>
+                <span>Administrator</span>
+                <button class="pixel-btn" id="admin-back-btn" style="display: none;"><i class="fas fa-arrow-left"></i></button>
+                <button class="pixel-btn" id="admin-logout-btn">KELUAR</button>
+            </div>
+        </header>
+        
+        <nav class="admin-nav">
+            <div class="nav-item active" data-admin-section="manage-artists">KELOLA ARTIS</div>
+            <div class="nav-item" data-admin-section="manage-albums">KELOLA ALBUM</div>
+            <div class="nav-item" data-admin-section="manage-songs">KELOLA LAGU</div>
+            <div class="nav-item" data-admin-section="manage-genres">KELOLA GENRE</div>
+        </nav>
+        
+        <div class="admin-content">
+            <!-- Manage Artists -->
+            <div class="admin-section active" id="manage-artists">
+                <h3 class="section-title">TAMBAH ARTIS BARU</h3>
+                <form id="add-artist-form">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="artist-name">NAMA ARTIS</label>
+                            <input type="text" id="artist-name" class="pixel-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="artist-country">ASAL NEGARA</label>
+                            <input type="text" id="artist-country" class="pixel-input" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="artist-bio">BIOGRAFI</label>
+                        <textarea id="artist-bio" class="pixel-input" rows="4" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>GENRE</label>
+                        <div class="genre-tags" id="artist-genre-tags">
+                            <!-- Genre tags will be loaded here -->
+                        </div>
+                        <input type="hidden" id="artist-genre" required>
+                    </div>
+                    <div class="upload-area" id="artist-image-upload">
+                        <i class="fas fa-cloud-upload-alt" style="font-size: 2rem; margin-bottom: 15px;"></i>
+                        <p>KLIK UNTUK UPLOAD FOTO ARTIS</p>
+                        <p style="font-size: 0.8rem; color: var(--accent-color);">Format: JPG, PNG (Maks: 5MB)</p>
+                        <input type="file" id="artist-image" accept="image/*" style="display: none;">
+                        <div class="upload-preview" id="artist-preview"></div>
+                    </div>
+                    <button type="submit" class="pixel-btn pixel-shadow" style="width: 100%;">SIMPAN ARTIS</button>
+                </form>
+                
+                <div class="admin-list" id="artists-list">
+                    <h3 class="section-title">DAFTAR ARTIS</h3>
+                    <div class="empty-state" id="empty-artists">
+                        <i class="fas fa-users"></i>
+                        <p>Belum ada artis. Tambahkan artis pertama!</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Manage Albums -->
+            <div class="admin-section" id="manage-albums">
+                <h3 class="section-title">TAMBAH ALBUM BARU</h3>
+                <form id="add-album-form">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="album-title">JUDUL ALBUM</label>
+                            <input type="text" id="album-title" class="pixel-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="album-artist">ARTIS</label>
+                            <select id="album-artist" class="pixel-input" required>
+                                <option value="">Pilih Artis</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="album-year">TAHUN</label>
+                            <input type="number" id="album-year" class="pixel-input" min="1900" max="2025" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="album-genre-select">GENRE</label>
+                            <select id="album-genre-select" class="pixel-input" required>
+                                <option value="">Pilih Genre</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="upload-area" id="album-cover-upload">
+                        <i class="fas fa-cloud-upload-alt" style="font-size: 2rem; margin-bottom: 15px;"></i>
+                        <p>KLIK UNTUK UPLOAD COVER ALBUM</p>
+                        <p style="font-size: 0.8rem; color: var(--accent-color);">Format: JPG, PNG (Maks: 5MB)</p>
+                        <input type="file" id="album-cover" accept="image/*" style="display: none;">
+                        <div class="upload-preview" id="album-preview"></div>
+                    </div>
+                    <button type="submit" class="pixel-btn pixel-shadow" style="width: 100%;">SIMPAN ALBUM</button>
+                </form>
+                
+                <div class="admin-list" id="albums-list">
+                    <h3 class="section-title">DAFTAR ALBUM</h3>
+                    <div class="empty-state" id="empty-albums">
+                        <i class="fas fa-compact-disc"></i>
+                        <p>Belum ada album. Tambahkan album pertama!</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Manage Songs -->
+            <div class="admin-section" id="manage-songs">
+                <h3 class="section-title">TAMBAH LAGU BARU</h3>
+                <form id="add-song-form">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="song-title">JUDUL LAGU</label>
+                            <input type="text" id="song-title" class="pixel-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="song-artist">ARTIS</label>
+                            <select id="song-artist" class="pixel-input" required>
+                                <option value="">Pilih Artis</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="song-album">ALBUM</label>
+                            <select id="song-album" class="pixel-input">
+                                <option value="">Pilih Album (Opsional)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="song-genre-select">GENRE</label>
+                        <select id="song-genre-select" class="pixel-input" required>
+                            <option value="">Pilih Genre</option>
+                        </select>
+                    </div>
+                    <div class="upload-area" id="song-cover-upload">
+                        <i class="fas fa-cloud-upload-alt" style="font-size: 2rem; margin-bottom: 15px;"></i>
+                        <p>KLIK UNTUK UPLOAD COVER LAGU (OPSIONAL)</p>
+                        <p style="font-size: 0.8rem; color: var(--accent-color);">Format: JPG, PNG (Maks: 5MB)</p>
+                        <input type="file" id="song-cover" accept="image/*" style="display: none;">
+                        <div class="upload-preview" id="song-cover-preview"></div>
+                    </div>
+                    <div class="multi-upload-area" id="song-files-upload">
+                        <i class="fas fa-cloud-upload-alt" style="font-size: 2rem; margin-bottom: 15px;"></i>
+                        <p>KLIK ATAU SERET UNTUK UPLOAD FILE LAGU (MULTIPLE)</p>
+                        <p style="font-size: 0.8rem; color: var(--accent-color);">Format: MP3 (Maks: 10MB per file)</p>
+                        <input type="file" id="song-files" accept="audio/mpeg,audio/mp3" multiple style="display: none;">
+                        <div class="file-list" id="song-files-list"></div>
+                    </div>
+                    <button type="submit" class="pixel-btn pixel-shadow" style="width: 100%;">SIMPAN LAGU</button>
+                </form>
+                
+                <div class="admin-list" id="songs-list">
+                    <h3 class="section-title">DAFTAR LAGU</h3>
+                    <div class="empty-state" id="empty-songs">
+                        <i class="fas fa-music"></i>
+                        <p>Belum ada lagu. Tambahkan lagu pertama!</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Manage Genres -->
+            <div class="admin-section" id="manage-genres">
+                <h3 class="section-title">TAMBAH GENRE BARU</h3>
+                <form id="add-genre-form">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="genre-name">NAMA GENRE</label>
+                            <input type="text" id="genre-name" class="pixel-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="genre-color">WARNA (HEX)</label>
+                            <input type="color" id="genre-color" class="pixel-input" value="#888888" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="pixel-btn pixel-shadow" style="width: 100%;">TAMBAH GENRE</button>
+                </form>
+                
+                <div class="admin-list" id="genres-list">
+                    <h3 class="section-title">DAFTAR GENRE</h3>
+                    <div class="empty-state" id="empty-genres">
+                        <i class="fas fa-tags"></i>
+                        <p>Belum ada genre. Tambahkan genre pertama!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <script src="script.js"></script>
+</body>
+</html>
