@@ -252,9 +252,21 @@ body, html {
         6px 6px 0 rgba(136, 136, 136, 0.3),
         0 0 20px rgba(136, 136, 136, 0.2);
     animation: pixel-glow 2s infinite alternate;
-    word-break: break-word;
+    word-break: keep-all; /* Tidak memotong kata */
+    white-space: nowrap; /* Tidak wrap ke baris baru */
     padding: 0.5rem 1rem;
     position: relative;
+    overflow: visible;
+}
+
+/* Untuk memastikan ORAPLAY tidak terpotong di mobile */
+@media (max-width: 480px) {
+    .logo {
+        font-size: clamp(2.5rem, 10vw, 4rem);
+        letter-spacing: 0.1em;
+        white-space: normal; /* Di mobile sangat kecil, biarkan wrap */
+        word-break: break-word;
+    }
 }
 
 .logo::after {
@@ -375,45 +387,6 @@ body, html {
 .pixel-btn.secondary {
     background-color: transparent;
     color: var(--text-color);
-}
-
-/* Landing page features */
-.landing-features {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
-    margin-top: 3rem;
-    width: 100%;
-    max-width: 900px;
-}
-
-.feature {
-    background: var(--bg-color);
-    border: var(--pixel-border);
-    padding: 1.5rem;
-    text-align: center;
-    transition: transform 0.3s ease;
-}
-
-.feature:hover {
-    transform: translateY(-5px);
-}
-
-.feature i {
-    font-size: 2.5rem;
-    color: var(--accent-color);
-    margin-bottom: 1rem;
-}
-
-.feature h3 {
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
-}
-
-.feature p {
-    font-size: 0.9rem;
-    color: var(--accent-color);
-    font-weight: 400;
 }
 
 /* ==================== AUTH MODAL ==================== */
@@ -592,6 +565,139 @@ body, html {
     flex: 1;
     min-width: 0;
     text-shadow: 2px 2px 0 var(--accent-color);
+    word-break: keep-all;
+}
+
+/* TOMBOL HAMBURGER - JELAS DAN BESAR */
+.hamburger-btn {
+    width: 48px;
+    height: 48px;
+    border: var(--pixel-border);
+    background-color: var(--bg-color);
+    cursor: pointer;
+    display: none; /* Sembunyikan di desktop */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 0;
+    flex-shrink: 0;
+    margin-left: 10px;
+    z-index: 100;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.hamburger-btn span {
+    display: block;
+    width: 24px;
+    height: 3px;
+    background-color: var(--text-color);
+    transition: all 0.3s ease;
+    border-radius: 2px;
+}
+
+/* Animasi hamburger menjadi X ketika aktif */
+.hamburger-btn.active span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+}
+
+.hamburger-btn.active span:nth-child(2) {
+    opacity: 0;
+    transform: translateX(-10px);
+}
+
+.hamburger-btn.active span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+/* Efek hover untuk hamburger */
+.hamburger-btn:hover {
+    background-color: var(--text-color);
+}
+
+.hamburger-btn:hover span {
+    background-color: var(--bg-color);
+}
+
+/* Label untuk hamburger (opsional) */
+.hamburger-label {
+    font-size: 0.7rem;
+    margin-top: 2px;
+    color: var(--text-color);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Mobile Menu Overlay */
+.mobile-menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 99;
+    display: none;
+    backdrop-filter: blur(5px);
+}
+
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    right: -300px;
+    width: 280px;
+    height: 100vh;
+    background-color: var(--bg-color);
+    border-left: var(--pixel-border);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    padding: 100px 20px 20px;
+    transition: right 0.3s ease;
+    overflow-y: auto;
+    box-shadow: -5px 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.mobile-menu.active {
+    right: 0;
+}
+
+.mobile-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.mobile-nav-item {
+    padding: 16px 20px;
+    border: var(--pixel-border);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1rem;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.mobile-nav-item i {
+    font-size: 1.2rem;
+    width: 24px;
+    text-align: center;
+}
+
+.mobile-nav-item:hover,
+.mobile-nav-item.active {
+    background-color: var(--text-color);
+    color: var(--bg-color);
+    transform: translateX(-5px);
 }
 
 .user-info {
@@ -643,109 +749,6 @@ body, html {
     min-height: 40px;
     margin-right: 8px;
     flex-shrink: 0;
-}
-
-/* Tombol Hamburger untuk Mobile */
-.hamburger-btn {
-    width: 44px;
-    height: 44px;
-    border: var(--pixel-border);
-    background-color: var(--bg-color);
-    cursor: pointer;
-    display: none; /* Sembunyikan di desktop */
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    padding: 0;
-    flex-shrink: 0;
-    margin-left: auto;
-    z-index: 100;
-    transition: all 0.3s ease;
-}
-
-.hamburger-btn span {
-    display: block;
-    width: 22px;
-    height: 3px;
-    background-color: var(--text-color);
-    transition: all 0.3s ease;
-    border-radius: 2px;
-}
-
-/* Animasi hamburger menjadi X ketika aktif */
-.hamburger-btn.active span:nth-child(1) {
-    transform: translateY(9px) rotate(45deg);
-}
-
-.hamburger-btn.active span:nth-child(2) {
-    opacity: 0;
-    transform: translateX(-10px);
-}
-
-.hamburger-btn.active span:nth-child(3) {
-    transform: translateY(-9px) rotate(-45deg);
-}
-
-/* Mobile Menu Overlay */
-.mobile-menu-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.9);
-    z-index: 99;
-    display: none;
-    backdrop-filter: blur(5px);
-}
-
-.mobile-menu {
-    position: fixed;
-    top: 0;
-    right: -300px;
-    width: 280px;
-    height: 100vh;
-    background-color: var(--bg-color);
-    border-left: var(--pixel-border);
-    z-index: 100;
-    display: flex;
-    flex-direction: column;
-    padding: 80px 20px 20px;
-    transition: right 0.3s ease;
-    overflow-y: auto;
-}
-
-.mobile-menu.active {
-    right: 0;
-}
-
-.mobile-nav {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-bottom: 30px;
-}
-
-.mobile-nav-item {
-    padding: 15px 20px;
-    border: var(--pixel-border);
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    text-decoration: none;
-    font-size: 1rem;
-    text-align: left;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-}
-
-.mobile-nav-item:hover,
-.mobile-nav-item.active {
-    background-color: var(--text-color);
-    color: var(--bg-color);
-    transform: translateX(-5px);
 }
 
 /* Navigation - Desktop */
@@ -1436,8 +1439,13 @@ body, html {
         flex-direction: column;
     }
     
-    .landing-features {
-        grid-template-columns: 1fr;
+    .hamburger-btn {
+        width: 42px;
+        height: 42px;
+    }
+    
+    .mobile-menu {
+        width: 250px;
     }
 }
 
@@ -1527,10 +1535,6 @@ body, html {
     
     .form-grid {
         grid-template-columns: 1fr 1fr;
-    }
-    
-    .landing-features {
-        grid-template-columns: repeat(3, 1fr);
     }
 }
 
@@ -1664,7 +1668,7 @@ body, html {
     }
     
     .mobile-menu {
-        padding-top: max(80px, calc(80px + var(--safe-area-top)));
+        padding-top: max(100px, calc(100px + var(--safe-area-top)));
         padding-bottom: max(20px, calc(20px + var(--safe-area-bottom)));
     }
 }
